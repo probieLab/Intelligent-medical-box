@@ -275,7 +275,7 @@ export default class VideoCalls extends Component {
     //     this.setState({ status: 'connect', info: 'Connecting' });
     //     join(this.state.roomID);
     // }
-    _switchVideoType() {
+    _switchVideoType=()=> {
         console.log(this.state);
         const isFront = !this.state.isFront;
         this.setState({ isFront });

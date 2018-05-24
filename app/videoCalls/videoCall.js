@@ -8,6 +8,7 @@ import {
     TextInput,
     ListView,
     Platform,
+    Dimensions
 } from 'react-native';
 
 import io from 'socket.io-client';
@@ -296,12 +297,12 @@ export default class VideoCalls extends Component {
             }
         });
     }
-    receiveTextData(data) {
+    receiveTextData=(data)=> {
         const textRoomData = this.state.textRoomData.slice();
         textRoomData.push(data);
         this.setState({ textRoomData, textRoomValue: '' });
     }
-    _textRoomPress() {
+    _textRoomPress=()=> {
         if (!this.state.textRoomValue) {
             return
         }
@@ -313,7 +314,7 @@ export default class VideoCalls extends Component {
         }
         this.setState({ textRoomData, textRoomValue: '' });
     }
-    _renderTextRoom() {
+    _renderTextRoom=()=> {
         return (
             <View style={styles.listViewContainer}>
                 <ListView
@@ -345,26 +346,7 @@ export default class VideoCalls extends Component {
                     </Text>
                     <TouchableHighlight
                         style={{ borderWidth: 1, borderColor: 'black' }}
-                        onPress={() => {
-                            const isFront = !this.state.isFront;
-                            this.setState({ isFront });
-                            getLocalStream(isFront, function (stream) {
-                                if (localStream) {
-                                    for (const id in pcPeers) {
-                                        const pc = pcPeers[id];
-                                        pc && pc.removeStream(localStream);
-                                    }
-                                    localStream.release();
-                                }
-                                localStream = stream;
-                                container.setState({ selfViewSrc: stream.toURL() });
-
-                                for (const id in pcPeers) {
-                                    const pc = pcPeers[id];
-                                    pc && pc.addStream(localStream);
-                                }
-                            });
-                        }}>
+                        onPress={() =>this._switchVideoType}>
                         <Text>Switch camera</Text>
                     </TouchableHighlight>
                 </View>
@@ -400,13 +382,16 @@ export default class VideoCalls extends Component {
         );
     }
 }
-
+const win = Dimensions.get('window');
 const styles = StyleSheet.create({
     selfView: {
-        width: 200,
-        height: 150,
+        width: win.width,
+        height: win.height*0.8,
     },
     remoteView: {
+        position:'absolute',
+        right:0,
+        top:0,
         width: 200,
         height: 150,
     },

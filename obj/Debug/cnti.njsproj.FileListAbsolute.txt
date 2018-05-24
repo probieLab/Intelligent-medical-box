@@ -1,0 +1,3 @@
+C:\Users\DXK\Documents\GitHub\Intelligent-medical-box\obj\Debug\cnti.njsprojResolveAssemblyReference.cache
+C:\Users\DXK\Documents\GitHub\Intelligent-medical-box\obj\Debug\cnti.njsproj.CoreCompileInputs.cache
+C:\Users\DXK\Documents\GitHub\Intelligent-medical-box\bin\Microsoft.NodejsTools.WebRole.dll

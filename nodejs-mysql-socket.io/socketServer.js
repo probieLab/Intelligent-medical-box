@@ -9,7 +9,7 @@ var db = mysql.createPool({
     user: 'NodeTest',
     password: '5201314',
     database: 'NodeTest'
-}); //×Ô¶¨ÒåsqlÁ¬½Ó³Ø
+}); //è‡ªå®šä¹‰sqlè¿æ¥æ± 
 
 app.listen(3666, function () {
     console.log('start listen...');

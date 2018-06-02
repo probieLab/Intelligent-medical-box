@@ -5,44 +5,20 @@
  */
 
 import React, { Component } from 'react';
+import Main from './main';
+import Login from './app/login/login';
 import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
+  View,
 } from 'react-native';
-import VideoCalls from './app/videoCalls/videoCall'
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-export default class App extends Component{
+import { StackNavigator } from 'react-navigation';
+export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <VideoCalls/>
-      </View>
-    );
+      <TotalNav/>
+    )
   }
 }
+const TotalNav = StackNavigator({
+  Login: { screen: Login },
+})
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});

@@ -1,5 +1,3 @@
-rootProject.name = 'Intelligent'
-include ':react-native-webrtc'
-project(':react-native-webrtc').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-webrtc/android')
+rootProject.name = 'login'
 
 include ':app'

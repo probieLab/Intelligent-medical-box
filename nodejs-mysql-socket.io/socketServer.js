@@ -39,10 +39,10 @@ function getUserFromeDatabase(uName, uPassword) {
 }
 
 function getDataFormDatabase(uDataType, uDataTime, uDataTable, uDataHead, uDataId) {
-    if (uDataHead == 'all') {
+    if (uDataHead === 'all') {
         uDataHead = '*';
     }
-    if (dataType == 'Pull') {
+    if (dataType === 'Pull') {
         db.query('SELECT' + uDataHead + 'FROM' + uDataTable + 'WHERE dataTime=' + uDataTime + 'AND dataId=' + uDataId, (data, err) => {
             if (err) {
                 return err;
@@ -51,7 +51,7 @@ function getDataFormDatabase(uDataType, uDataTime, uDataTable, uDataHead, uDataI
             }
         });
     }
-    if (uDataType == 'Push') {
+    if (uDataType === 'Push') {
         db.query('INSERT' + '(' + uDataHead.eg.eg.eg + ')')//push any??
     }
     return 'Error,Cannot do this.'

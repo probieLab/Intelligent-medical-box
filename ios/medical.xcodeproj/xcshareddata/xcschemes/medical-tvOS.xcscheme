@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "login-tvOS.app"
-               BlueprintName = "login-tvOS"
-               ReferencedContainer = "container:login.xcodeproj">
+               BuildableName = "medical-tvOS.app"
+               BlueprintName = "medical-tvOS"
+               ReferencedContainer = "container:medical.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "login-tvOSTests.xctest"
-               BlueprintName = "login-tvOSTests"
-               ReferencedContainer = "container:login.xcodeproj">
+               BuildableName = "medical-tvOSTests.xctest"
+               BlueprintName = "medical-tvOSTests"
+               ReferencedContainer = "container:medical.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "login-tvOSTests.xctest"
-               BlueprintName = "login-tvOSTests"
-               ReferencedContainer = "container:login.xcodeproj">
+               BuildableName = "medical-tvOSTests.xctest"
+               BlueprintName = "medical-tvOSTests"
+               ReferencedContainer = "container:medical.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "login-tvOS.app"
-            BlueprintName = "login-tvOS"
-            ReferencedContainer = "container:login.xcodeproj">
+            BuildableName = "medical-tvOS.app"
+            BlueprintName = "medical-tvOS"
+            ReferencedContainer = "container:medical.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "login-tvOS.app"
-            BlueprintName = "login-tvOS"
-            ReferencedContainer = "container:login.xcodeproj">
+            BuildableName = "medical-tvOS.app"
+            BlueprintName = "medical-tvOS"
+            ReferencedContainer = "container:medical.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +113,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "login-tvOS.app"
-            BlueprintName = "login-tvOS"
-            ReferencedContainer = "container:login.xcodeproj">
+            BuildableName = "medical-tvOS.app"
+            BlueprintName = "medical-tvOS"
+            ReferencedContainer = "container:medical.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

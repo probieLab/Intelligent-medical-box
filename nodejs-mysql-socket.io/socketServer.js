@@ -3,6 +3,7 @@ const app = require('http').createServer();
 const io = require('socket.io')(app);
 const fs = require('fs');
 const mysql = require('mysql');
+var userOperation = require('userOperation');
 
 var db = mysql.createPool({
     host: '60.205.208.104',
@@ -11,10 +12,9 @@ var db = mysql.createPool({
     database: 'NodeTest'
 }); //自定义sql连接池
 
-app.listen(3666, function () {
-    console.log('start listen...');
-});
+var webServerMach = example();
 
+webServerMach.get('userLogin',userOperation.userLogin.userLogin);
 
 io.on('connection', function (socket) {//socket.io server connect
     socket.emit('stauts', { stauts: 'Connect done!' });

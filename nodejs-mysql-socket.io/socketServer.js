@@ -3,7 +3,7 @@ const app = require('http').createServer();
 const io = require('socket.io')(app);
 const fs = require('fs');
 const mysql = require('mysql');
-var userOperation = require('userOperation');
+
 
 var db = mysql.createPool({
     host: '60.205.208.104',
@@ -12,9 +12,26 @@ var db = mysql.createPool({
     database: 'NodeTest'
 }); //自定义sql连接池
 
-var webServerMach = example();
+var webServerMach = express();
 
-webServerMach.get('userLogin',userOperation.userLogin.userLogin);
+
+
+webServerMach.get('userLogin',(req, res, next)=>{
+    db.query('SELECT userName FROM userInfoDate WHERE userName='+req.param('userName'),(data, err)=>{
+        if(!data){
+            res.send('Cannot find user!');
+        }else{
+            db.query('SELECT userPwd FROM userInfoDate WHERE userPwd='+req.param('userPwd')+'AND'+'userId='+data.userId,(data2, err)=>{
+                if (!data2) {
+                    res.send('Password mistake!');
+                } else {
+                    res.send('Login done!Enjoj it.');
+                }
+            });
+        }
+    });
+
+});
 
 io.on('connection', function (socket) {//socket.io server connect
     socket.emit('stauts', { stauts: 'Connect done!' });
@@ -56,4 +73,10 @@ function getDataFormDatabase(uDataType, uDataTime, uDataTable, uDataHead, uDataI
     }
     return 'Error,Cannot do this.'
 }
+
+
+
+io.listen(3666);
+webServerMach.listen(8088);
+
 

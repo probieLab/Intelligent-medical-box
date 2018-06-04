@@ -19,14 +19,13 @@ export default class Login extends Component {
     }
     render() {
         return (
-            <ImageBackground style={styles.photo} source={require('../img/WD000006LR1.png')}>
+            <ImageBackground style={styles.photo} source={require('../img/medical.jpg')}>
             <View style={styles.container}>
-            {/* <Image style={styles.photo} source={require('../img/WD000006LR1.png')} /> */}
                 <StatusBar/>
                 <View style={styles.topArea}>
-                    <Image style={styles.header} source={require('../img/header.png')} />
+                    <Image style={styles.header} source={require('../img/WD000006LR1.png')} />
                 </View>
-                <View style={styles.midArea} >
+                <View style={styles.midArea}>
                     <View style={styles.inputGroup}>
                         <TextInput style={styles.inputItem} underlineColorAndroid='rgba(29,156,232,1)' placeholderTextColor='rgba(251,251,251,1)' placeholder='用户名' />
                         <TextInput style={styles.inputItem} underlineColorAndroid='rgba(29,156,232,1)' placeholderTextColor='rgba(251,251,251,1)' placeholder='密码' />
@@ -45,9 +44,9 @@ export default class Login extends Component {
                 </View>
                 <View style={styles.bottomArea} >
                     <Text style={{ textAlign:'center',height: 45,color:'rgba(251,251,251,1)'}}>登录即代表阅读并同意</Text>
-                    <TouchableHighlight underlayColor='rgba(0,54,164,1)' style={{ height: 45}} onPress={() => this.props.navigation.navigate('Main')}>
+                    <TouchableOpacity underlayColor='rgba(0,54,164,1)' style={{ height: 45}} onPress={() => this.props.navigation.navigate('Main')}>
                         <Text style={{ color: 'rgba(29,156,232,1)'}}>服务条款</Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
             </View>
             </ImageBackground>

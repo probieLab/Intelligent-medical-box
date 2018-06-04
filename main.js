@@ -25,7 +25,7 @@ export default class Main extends Component {
                 {/* <MainTop />
                 <View style={{height:Dimensions.get('window').height-57}}>
                     <NewsList />
-                </View> */}
+                </View>*/}
                 {/* <SocketTest/> */}
                 <EnviromentNav />
             </View>

@@ -42,10 +42,11 @@ webServerMach.get('userLogin',(req, res, next)=>{
 io.on('connection', function (socket) {//socket.io server connect
     socket.emit('stauts', { stauts: 'Connect done!' });
     socket.on('H_Push', function (data) {
-        data.emit('S_Return', { S_Return:getDataFormDatabase(Push, data.uDataTime, data.uDataTable, all, uDataId) });
+        data.emit('H_Return', { H_Return:getDataFormDatabase(Push, data.uDataTime, data.uDataTable, all, uDataId) });
     });
     socket.on('S_Pull', function (data) {//pull all
-        data.emit('S_Return', { S_Return: getDataFormDatabase(Pull, data.uDataTime, data.uDataTable, all, uDataId) });
+        data.emit('S_Return', {66,66,66,66,66});
+        //data.emit('S_Return', { S_Return: getDataFormDatabase(Pull, data.uDataTime, data.uDataTable, all, uDataId) });
     });
     socket.disconnect();
 });

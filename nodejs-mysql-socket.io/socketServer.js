@@ -3,7 +3,7 @@ const app = require('http').createServer();
 const io = require('socket.io')(app);
 const fs = require('fs');
 const mysql = require('mysql');
-
+const bodyParser = require('body-parser');
 
 var db = mysql.createPool({
     host: '60.205.208.104',
@@ -14,10 +14,13 @@ var db = mysql.createPool({
 
 var webServerMach = express();
 
-
+// 解析 application/json
+webServerMach.use(bodyParser.json());
+// 解析 application/x-www-form-urlencoded
+webServerMach.use(bodyParser.urlencoded());
 
 webServerMach.get('userLogin',(req, res, next)=>{
-    if(req.query.userName!=null&&req.query.userPwd!=null){
+    if(req.body.userName!=null&&req.body.userPwd!=null){
         res.send("Login Done!");
     }
 
@@ -45,7 +48,7 @@ io.on('connection', function (socket) {//socket.io server connect
         data.emit('H_Return', { H_Return:getDataFormDatabase(Push, data.uDataTime, data.uDataTable, all, uDataId) });
     });
     socket.on('S_Pull', function (data) {//pull all
-        data.emit('S_Return', {66,66,66,66,66});
+        data.emit('S_Return', {});
         //data.emit('S_Return', { S_Return: getDataFormDatabase(Pull, data.uDataTime, data.uDataTable, all, uDataId) });
     });
     socket.disconnect();

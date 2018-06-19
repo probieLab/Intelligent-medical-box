@@ -147,7 +147,7 @@ export default class MainMedical extends Component {
                 
                 </View>                
                 <View style={styles.top} >
-                    <View style={{flex:1,borderRightWidth:4,borderRightColor:'#bb0b0b',alignItems:'center',justifyContent:'center'}} >
+                    <View style={{flex:1,borderRightWidth:1,borderRightColor:'#bb0b0b',alignItems:'center',justifyContent:'center'}} >
                         <Image style={{height:30,width:30,borderRadius:15,marginTop:40}} source={require('../img/医疗_medical14.png')} />
                         <View style={{flex:1,marginTop:10}}>
                             <Text style={{fontSize:15,color:'#fff',textShadowColor:'#cc3333',textShadowOffset:{width:1,height:1}}}>体温</Text>
@@ -168,7 +168,7 @@ export default class MainMedical extends Component {
                     </View> 
                 </View>
                 <View style={styles.bottom}>
-                    <View style={{flex:1,borderRightWidth:4,borderRightColor:'#bb0b0b',alignItems:'center',justifyContent:'center'}}>
+                    <View style={{flex:1,borderRightWidth:1,borderRightColor:'#bb0b0b',alignItems:'center',justifyContent:'center'}}>
                         <Image style={{height:30,width:30,borderRadius:15,marginTop:40}} source={require('../img/医疗抢救.png')} />
                         <View style={{flex:1,marginTop:15}}>
                             <Text style={{fontSize:15,color:'#fff',textShadowColor:'#cc3333',textShadowOffset:{width:1,height:1}}}>室内温度</Text>
@@ -189,17 +189,14 @@ export default class MainMedical extends Component {
                     </View>   */}
                 </View>
                 <View style={styles.floatCom} >
-                    <Image style={{height:120,width:120,borderRadius:120}} source={require('../img/timg.png')} />
-                    <Text style={{fontSize:15,color:'#fff',marginTop:-85,textShadowColor:'#cc3333',textShadowOffset:{width:1,height:1}}}>心率</Text>
-                    <Text style={{fontSize:15,color:'#fff',marginTop:5,}}>{this.state.s5}g/CM^3</Text>
+                    <Text style={{flex:1, fontSize:15,color:'#fff',marginTop:-85,textShadowColor:'#cc3333',textShadowOffset:{width:1,height:1}}}>心率</Text>
+                    <Text style={{flex:1,fontSize:15,color:'#fff',marginTop:5,}}>{this.state.s5}g/CM^3</Text>
                 </View>
-                <View style={styles.floatBottom}>
-                <TouchableOpacity onPress={()=>this.props.navigation.navigate('Vedio')}>
-                <View style={{justifyContent:'center',alignItems:'center'}}>
-                    <Image style={{height:40,width:40,borderRadius:15,marginTop:15}} source={require('../img/视频.png')} />
-                </View>
+                <TouchableOpacity style={styles.floatBottom} onPress={()=>this.props.navigation.navigate('Vedio')}>
+                    <View style={{justifyContent:'center',alignItems:'center'}}>
+                        <Image style={{height:40,width:40,borderRadius:15,marginTop:15}} source={require('../img/视频.png')} />
+                    </View>
                 </TouchableOpacity>
-                </View>
             </View>
         )
     }

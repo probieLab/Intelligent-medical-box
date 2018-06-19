@@ -22,20 +22,18 @@ export const styles = StyleSheet.create({
         alignItems:'center',
     },
     a:{
-        flex : 12
+        flex : 6
     },
     top:{
-        flex:3,
+        flex:4,
         backgroundColor:'#222',
         borderColor: '#bb0b0b',
-        borderBottomWidth:2,
+        borderBottomWidth:1,
         flexDirection: 'row',
     },
     bottom:{
-        flex:5,
+        flex:7,
         backgroundColor:'#222',
-        borderTopWidth:1,
-        borderColor: '#bb0b0b',
         flexDirection: 'row',
     },
     down:{
@@ -46,16 +44,16 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     floatCom:{
-        width:win.height*0.20,
-        height:win.height*0.20,
-        borderRadius: win.height*0.20/2,
-        borderWidth:4,
-        // background-image:'../img/timg.png',
-        borderColor: '#bb0b0b',
+        width:win.height*0.25,
+        height:win.height*0.25,
+        borderRadius: win.height*0.25/2,
+        backgroundColor:'rgba(187,11,11,.25)',
         position:'absolute',
         alignItems:'center',
-        top:win.height*0.34,
-        left:(win.width-win.height*0.20)/2,
+        flex:0,
+        justifyContent:'center',
+        top:win.height*(5/12)-win.height*0.125,
+        left:(win.width-win.height*0.25)/2,
     },
     floatBottom:{
         width:win.height*0.28,
@@ -68,6 +66,6 @@ export const styles = StyleSheet.create({
         bottom:0,
         // marginBottom:this.state.marginBottom,
         left:(win.width-win.height*0.28)/2,
-        backgroundColor:'#ccc'
+        backgroundColor:'#222'
     }
 });

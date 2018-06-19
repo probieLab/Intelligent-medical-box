@@ -31,7 +31,7 @@ export default class Doctor extends Component {
     }   
     render() {
         return (
-           <View style={style.container}>
+           <View style={styles.container}>
                 <View>
                 <TouchableHighlight>
                     <Text>眼科医生</Text>

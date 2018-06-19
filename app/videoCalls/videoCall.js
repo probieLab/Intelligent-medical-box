@@ -13,7 +13,7 @@ import {
 
 import io from 'socket.io-client';
 
-const socket = io.connect('https://react-native-webrtc.herokuapp.com', { transports: ['websocket'] });
+let socket;
 console.log(socket)
 
 import {
@@ -34,21 +34,6 @@ let localStream;
 function getLocalStream(isFront, callback) {
 
     let videoSourceId;
-
-    // on android, you don't have to specify sourceId manually, just use facingMode
-    // uncomment it if you want to specify
-    // if (Platform.OS === 'ios') {
-    //     MediaStreamTrack.getSources(sourceInfos => {
-    //         console.log("sourceInfos: ", sourceInfos);
-
-    //         for (const i = 0; i < sourceInfos.length; i++) {
-    //             const sourceInfo = sourceInfos[i];
-    //             if (sourceInfo.kind == "video" && sourceInfo.facing == (isFront ? "front" : "back")) {
-    //                 videoSourceId = sourceInfo.id;
-    //             }
-    //         }
-    //     });
-    // }
     console.log('getlocalSteam');
     console.ignoredYellowBox = ['Setting a timer'];
     getUserMedia({
@@ -81,8 +66,8 @@ function join(roomID) {
 function createPC(socketId, isOffer) {
     const pc = new RTCPeerConnection(configuration);
     pcPeers[socketId] = pc;
-    console.log('1235'+container);
-    
+    console.log('1235' + container);
+
     pc.onicecandidate = function (event) {
         console.log('onicecandidate', event.candidate);
         if (event.candidate) {
@@ -205,12 +190,7 @@ function leave(socketId) {
     container.setState({ info: 'One peer leave!' });
 }
 
-socket.on('exchange', function (data) {
-    exchange(data);
-});
-socket.on('leave', function (socketId) {
-    leave(socketId);
-});
+
 
 
 
@@ -256,8 +236,18 @@ export default class VideoCalls extends Component {
             textRoomValue: '',
         }
     }
-
+    static navigationOptions = {
+        header: null
+    }
     componentDidMount() {
+        socket = io.connect('https://react-native-webrtc.herokuapp.com', { transports: ['websocket'] });
+        console.log('connecting')
+        socket.on('exchange', function (data) {
+            exchange(data);
+        });
+        socket.on('leave', function (socketId) {
+            leave(socketId);
+        });
         container = this;
         socket.on('connect', function (data) {
             console.log('connect');
@@ -265,113 +255,19 @@ export default class VideoCalls extends Component {
                 localStream = stream;
                 container.setState({ selfViewSrc: stream.toURL() });
                 container.setState({ status: 'ready', info: 'Please enter or create room ID' });
-                console.log('1234'+container);
-                
-            });
-        });
-    }
-    // _press(event) {
-    //     console.log(this.state.roomID);
-    //     this.refs.roomID.blur();
-    //     this.setState({ status: 'connect', info: 'Connecting' });
-    //     join(this.state.roomID);
-    // }
-    _switchVideoType=()=> {
-        console.log(this.state);
-        const isFront = !this.state.isFront;
-        this.setState({ isFront });
-        getLocalStream(isFront, function (stream) {
-            if (localStream) {
-                for (const id in pcPeers) {
-                    const pc = pcPeers[id];
-                    pc && pc.removeStream(localStream);
-                }
-                localStream.release();
-            }
-            localStream = stream;
-            container.setState({ selfViewSrc: stream.toURL() });
+                console.log('1234' + container);
 
-            for (const id in pcPeers) {
-                const pc = pcPeers[id];
-                pc && pc.addStream(localStream);
-            }
+            });
+            join("123")
         });
     }
-    receiveTextData=(data)=> {
-        const textRoomData = this.state.textRoomData.slice();
-        textRoomData.push(data);
-        this.setState({ textRoomData, textRoomValue: '' });
-    }
-    _textRoomPress=()=> {
-        if (!this.state.textRoomValue) {
-            return
-        }
-        const textRoomData = this.state.textRoomData.slice();
-        textRoomData.push({ user: 'Me', message: this.state.textRoomValue });
-        for (const key in pcPeers) {
-            const pc = pcPeers[key];
-            pc.textDataChannel.send(this.state.textRoomValue);
-        }
-        this.setState({ textRoomData, textRoomValue: '' });
-    }
-    _renderTextRoom=()=> {
-        return (
-            <View style={styles.listViewContainer}>
-                <ListView
-                    dataSource={this.ds.cloneWithRows(this.state.textRoomData)}
-                    renderRow={rowData => <Text>{`${rowData.user}: ${rowData.message}`}</Text>}
-                />
-                <TextInput
-                    style={{ width: 200, height: 30, borderColor: 'gray', borderWidth: 1 }}
-                    onChangeText={value => this.setState({ textRoomValue: value })}
-                    value={this.state.textRoomValue}
-                />
-                <TouchableHighlight
-                    onPress={this._textRoomPress}>
-                    <Text>Send</Text>
-                </TouchableHighlight>
-            </View>
-        );
-    }
+
     render() {
         return (
             <View style={styles.container}>
                 <Text style={styles.welcome}>
                     {this.state.info}
                 </Text>
-                {this.state.textRoomConnected && this._renderTextRoom()}
-                <View style={{ flexDirection: 'row' }}>
-                    <Text>
-                        {this.state.isFront ? "Use front camera" : "Use back camera"}
-                    </Text>
-                    <TouchableHighlight
-                        style={{ borderWidth: 1, borderColor: 'black' }}
-                        onPress={() =>this._switchVideoType}>
-                        <Text>Switch camera</Text>
-                    </TouchableHighlight>
-                </View>
-                {this.state.status == 'ready' ?
-                    (<View>
-                        <TextInput
-                            ref='roomID'
-                            autoCorrect={false}
-                            style={{ width: 200, height: 40, borderColor: 'gray', borderWidth: 1 }}
-                            onChangeText={(text) => this.setState({ roomID: text })}
-                            value={this.state.roomID}
-                        />
-                        <TouchableHighlight
-                            onPress={(event)=>{
-                                // _press(event) {
-                                    console.log(this.state.roomID);
-                                    this.refs.roomID.blur();
-                                    this.setState({ status: 'connect', info: 'Connecting' });
-                                    join(this.state.roomID);
-                                // }
-                            }}>
-                            <Text>Enter room</Text>
-                        </TouchableHighlight>
-                    </View>) : null
-                }
                 <RTCView streamURL={this.state.selfViewSrc} style={styles.selfView} />
                 {
                     mapHash(this.state.remoteList, function (remote, index) {
@@ -385,25 +281,26 @@ export default class VideoCalls extends Component {
 const win = Dimensions.get('window');
 const styles = StyleSheet.create({
     selfView: {
+        position: 'absolute',
+        right:-win.width*0.3,
+        top: 0,
         width: win.width,
-        height: win.height*0.8,
+        height: win.height * 0.3,
     },
     remoteView: {
-        position:'absolute',
-        right:0,
-        top:0,
-        width: 200,
-        height: 150,
+        width: win.width,
+        height: win.height,
     },
     container: {
         flex: 1,
-        justifyContent: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#000',
+        justifyContent:'center'
     },
     welcome: {
         fontSize: 20,
         textAlign: 'center',
         margin: 10,
+        color:'#fff'
     },
     listViewContainer: {
         height: 150,

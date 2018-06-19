@@ -1,5 +1,5 @@
 {
-  "name": "Intelligent",
+  "name": "intelligent",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,10 +7,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "eslint": "^3.19.0",
     "react": "16.3.1",
     "react-native": "0.55.3",
     "react-native-webrtc": "^1.58.3",
-    "react-navigation": "^2.0.0-rc.9",
+    "react-navigation": "^2.3.1",
+    "react_native_mqtt": "^1.1.9",
     "socket.io": "^2.1.0"
   },
   "devDependencies": {

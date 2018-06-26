@@ -255,13 +255,10 @@ export default class VideoCalls extends Component {
                 localStream = stream;
                 container.setState({ selfViewSrc: stream.toURL() });
                 container.setState({ status: 'ready', info: 'Please enter or create room ID' });
-                console.log('1234' + container);
-
+                join("123");                
             });
-            join("123")
         });
     }
-
     render() {
         return (
             <View style={styles.container}>

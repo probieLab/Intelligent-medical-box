@@ -52,13 +52,6 @@ export default class MainMedical extends Component {
         
         
     }
-    // // static navigationOptions = {
-    // //     header:null
-     
-    
-    componentWillUnmount() {
-        
-    }
     componentDidMount(){
         this.state.client.connect({
             onSuccess: () => {
@@ -84,51 +77,9 @@ export default class MainMedical extends Component {
                 s6:data.GASData
             })//!!!!!!!!
 
-}
-}
-                
- 
-//             fetch('http://qx.litop.top/status?userId='+this.state.userId+'', {
-//                             })   
-//                             .then((response) => response.json())
-//                             .then((responseData) => {  
-//    // 获取到的数据处理
-                      
-//                            this.setState({  s1:JSON.parse(responseData)[0].value,
-//                                             s2:JSON.parse(responseData)[1].value,
-//                                             s3:JSON.parse(responseData)[2].value,
-//                                             s4:JSON.parse(responseData)[3].value,
-//                                             s5:JSON.parse(responseData)[4].value,
-//                                             s6:JSON.parse(responseData)[5].value,})//!!!!!!!!
-                         
-//                             })//refresh
-//                             .then(()=>{
-//                                 fetch('http://qx.litop.top/wd', {
-//                             })   
-//                             .then((response) => response.json())
-//                             .then((responseData) => {  
-//    // 获取到的数据处理
-                      
-//                            this.setState({ s1:responseData.value,
-//                                             })//!!!!!!!!
-                         
-//                             })//refresh
-//                             .then(()=>{
-                                
-//                             })
-//                             .catch((error) => { // 错误处理
-//                                 // alert(this.state.userName+'and'+this.state.userPwd);
-//                                 Alert.alert(error)
-//                             })
-//                             .done()
-//                             })
-//                             .catch((error) => { // 错误处理
-//                                 // alert(this.state.userName+'and'+this.state.userPwd);
-//                                 Alert.alert(error)
-//                             })
-//                             .done()
-        
-//      }
+            }
+        }
+
     static navigationOptions = {
         header:null
     }

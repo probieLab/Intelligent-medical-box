@@ -8,7 +8,8 @@ import {
     StatusBar,
     AsyncStorage,
     ToastAndroid,
-    WebView
+    WebView,
+    Animated
 } from 'react-native';
 import io from 'socket.io-client';
 import styles from './detailMainStyles';

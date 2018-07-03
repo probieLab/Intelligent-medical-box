@@ -11,7 +11,8 @@ import {
     LayoutAnimation,
     AsyncStorage,
     Alert,
-    Fetch
+    Fetch,
+    NativeModules,
 } from 'react-native';
 import{
     styles
@@ -30,6 +31,9 @@ init({
     sync: {
     }
 });
+const {UIManager} = NativeModules;
+const win = Dimensions.get('window'); 
+UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
 export default class MainMedical extends Component {
     constructor(props){
         super(props);
@@ -47,12 +51,60 @@ export default class MainMedical extends Component {
             s5: '',
             s6: '',
             loadS: 0,
+            flag:1,
+            width:win.height*0.20,
+            height:win.height*0.20,
+            top:win.height*(5/12)-win.height*0.10,
+            left:(win.width-win.height*0.20)/2,
+            borderRadius: win.height*0.20/2,
         }
         
-        
+    }
+    changeSize=()=>{
+        // console.log(this.state.height==win.height*0.20&&this.state.flag== 0)        
+        // if(this.state.height==win.height*0.25){
+            this.setState({
+                width:this.state.width+win.height*0.05,
+                height:this.state.height+win.height*0.05,
+                top:win.height*(5/12)-win.height*0.125,
+                left:(win.width-win.height*0.25)/2,
+                borderRadius: (this.state.width+win.height*0.05)/2,
+                
+            })
+            LayoutAnimation.spring();
+            setTimeout(()=>{
+                this.setState({
+                    width:this.state.width-win.height*0.05,
+                    height:this.state.height-win.height*0.05,
+                    top:win.height*(5/12)-win.height*0.10,
+                    left:(win.width-win.height*0.20)/2,
+                    borderRadius: (this.state.width-win.height*0.05)/2,
+                    
+                })
+                LayoutAnimation.spring();
+            },10)
+            return;
+        // }
+        // if(this.state.height==win.height*0.25&&(this.state.flag == 1)){
+        //     this.setState({
+        //         width:this.state.width-win.height*0.05,
+        //         height:this.state.height-win.height*0.05,
+        //         top:win.height*(5/12)-win.height*0.10,
+        //         left:(win.width-win.height*0.20)/2,
+        //         borderRadius: (this.state.width-win.height*0.05)/2,
+        //         flag:0
+        //     })
+        //     LayoutAnimation.spring();
+        //     return;            
+        // }
         
     }
+    componentWillMount(){
+        setInterval(this.changeSize,800)            
+
+    }
     componentDidMount(){
+        
         this.state.client.connect({
             onSuccess: () => {
                 s2:data.BloodHData,                // Alert.alert('success');
@@ -139,8 +191,11 @@ export default class MainMedical extends Component {
                     
                     </View>   */}
                 </View>
-                <View style={styles.floatCom} >
-                    <Text style={{flex:1, fontSize:15,color:'#fff',marginTop:-85,textShadowColor:'#cc3333',textShadowOffset:{width:1,height:1}}}>心率</Text>
+                <View style={[styles.floatCom,{height:this.state.height,width:this.state.width,top:this.state.top,left:this.state.left,borderRadius:this.state.borderRadius}]} >
+                    
+                </View>
+                <View style={[styles.floatCom,{backgroundColor:'rgba(143,3,3,1)'}]} >
+                <Text style={{flex:1, fontSize:15,color:'#fff',marginTop:-85,textShadowColor:'#cc3333',textShadowOffset:{width:1,height:1}}}>心率</Text>
                     <Text style={{flex:1,fontSize:15,color:'#fff',marginTop:5,}}>{this.state.s5}g/CM^3</Text>
                 </View>
                 <TouchableOpacity style={styles.floatBottom} onPress={()=>this.props.navigation.navigate('Vedio')}>

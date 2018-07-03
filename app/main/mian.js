@@ -64,21 +64,21 @@ export default class MainMedical extends Component {
         // console.log(this.state.height==win.height*0.20&&this.state.flag== 0)        
         // if(this.state.height==win.height*0.25){
             this.setState({
-                width:this.state.width+win.height*0.05,
-                height:this.state.height+win.height*0.05,
-                top:win.height*(5/12)-win.height*0.125,
-                left:(win.width-win.height*0.25)/2,
-                borderRadius: (this.state.width+win.height*0.05)/2,
+                width:this.state.width+win.height*0.03,
+                height:this.state.height+win.height*0.03,
+                top:win.height*(5/12)-win.height*0.115,
+                left:(win.width-win.height*0.23)/2,
+                borderRadius: (this.state.width+win.height*0.03)/2,
                 
             })
             LayoutAnimation.spring();
             setTimeout(()=>{
                 this.setState({
-                    width:this.state.width-win.height*0.05,
-                    height:this.state.height-win.height*0.05,
+                    width:this.state.width-win.height*0.03,
+                    height:this.state.height-win.height*0.03,
                     top:win.height*(5/12)-win.height*0.10,
                     left:(win.width-win.height*0.20)/2,
-                    borderRadius: (this.state.width-win.height*0.05)/2,
+                    borderRadius: (this.state.width-win.height*0.03)/2,
                     
                 })
                 LayoutAnimation.spring();
@@ -194,9 +194,9 @@ export default class MainMedical extends Component {
                 <View style={[styles.floatCom,{height:this.state.height,width:this.state.width,top:this.state.top,left:this.state.left,borderRadius:this.state.borderRadius}]} >
                     
                 </View>
-                <View style={[styles.floatCom,{backgroundColor:'rgba(143,3,3,1)'}]} >
+                <View style={[styles.floatCom,{backgroundColor:'rgba(143,3,3,1)',elevation:4}]} >
                 <Text style={{flex:1, fontSize:15,color:'#fff',marginTop:-85,textShadowColor:'#cc3333',textShadowOffset:{width:1,height:1}}}>心率</Text>
-                    <Text style={{flex:1,fontSize:15,color:'#fff',marginTop:5,}}>{this.state.s5}g/CM^3</Text>
+                    <Text style={{flex:1,fontSize:15,color:'#fff',marginTop:5,justifyContent:'center',alignItems:'center'}}>{this.state.s5}g/CM^3</Text>
                 </View>
                 <TouchableOpacity style={styles.floatBottom} onPress={()=>this.props.navigation.navigate('Vedio')}>
                     <View style={{justifyContent:'center',alignItems:'center'}}>

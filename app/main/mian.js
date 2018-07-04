@@ -52,56 +52,39 @@ export default class MainMedical extends Component {
             s6: '',
             loadS: 0,
             flag:1,
-            width:win.height*0.20,
-            height:win.height*0.20,
-            top:win.height*(5/12)-win.height*0.10,
-            left:(win.width-win.height*0.20)/2,
-            borderRadius: win.height*0.20/2,
+            width:win.height*0.23,
+            height:win.height*0.23,
+            top:win.height*(5/12)-win.height*0.115,
+            left:(win.width-win.height*0.23)/2,
+            borderRadius: win.height*0.23/2,
         }
         
     }
-    changeSize=()=>{
-        // console.log(this.state.height==win.height*0.20&&this.state.flag== 0)        
-        // if(this.state.height==win.height*0.25){
+    changeSize=()=>{  
             this.setState({
-                width:this.state.width+win.height*0.03,
-                height:this.state.height+win.height*0.03,
-                top:win.height*(5/12)-win.height*0.115,
-                left:(win.width-win.height*0.23)/2,
-                borderRadius: (this.state.width+win.height*0.03)/2,
+                width:this.state.width-win.height*0.03,
+                height:this.state.height-win.height*0.03,
+                top:win.height*(5/12)-win.height*0.10,
+                left:(win.width-win.height*0.20)/2,
+                borderRadius: (this.state.width-win.height*0.03)/2,
                 
             })
             LayoutAnimation.spring();
             setTimeout(()=>{
                 this.setState({
-                    width:this.state.width-win.height*0.03,
-                    height:this.state.height-win.height*0.03,
-                    top:win.height*(5/12)-win.height*0.10,
-                    left:(win.width-win.height*0.20)/2,
-                    borderRadius: (this.state.width-win.height*0.03)/2,
+                    width:this.state.width+win.height*0.03,
+                    height:this.state.height+win.height*0.03,
+                    top:win.height*(5/12)-win.height*0.115,
+                    left:(win.width-win.height*0.23)/2,
+                    borderRadius: (this.state.width+win.height*0.03)/2,
                     
                 })
                 LayoutAnimation.spring();
             },10)
             return;
-        // }
-        // if(this.state.height==win.height*0.25&&(this.state.flag == 1)){
-        //     this.setState({
-        //         width:this.state.width-win.height*0.05,
-        //         height:this.state.height-win.height*0.05,
-        //         top:win.height*(5/12)-win.height*0.10,
-        //         left:(win.width-win.height*0.20)/2,
-        //         borderRadius: (this.state.width-win.height*0.05)/2,
-        //         flag:0
-        //     })
-        //     LayoutAnimation.spring();
-        //     return;            
-        // }
-        
     }
     componentWillMount(){
         setInterval(this.changeSize,800)            
-
     }
     componentDidMount(){
         
@@ -140,8 +123,10 @@ export default class MainMedical extends Component {
             <View style={styles.container} >
                 
                 <View style={styles.header} >
-                    {/* <Text style={styles.headerTitle}>智能医疗</Text> */}
                     <View style={styles.a}></View>
+                    <View style={styles.headerTitle}>
+                        <Text style={styles.headerTitleWord} >智能医疗</Text>
+                    </View>
                     <View style={styles.Personal}>
                     <TouchableOpacity style={{flex:1,height:30,width:30}} onPress={()=>this.props.navigation.navigate('Doctor')}>
                         <Image style={{height:30,width:30}} source={require('../img/defaultHeader.png')} />
@@ -194,13 +179,13 @@ export default class MainMedical extends Component {
                 <View style={[styles.floatCom,{height:this.state.height,width:this.state.width,top:this.state.top,left:this.state.left,borderRadius:this.state.borderRadius}]} >
                     
                 </View>
-                <View style={[styles.floatCom,{backgroundColor:'rgba(143,3,3,1)',elevation:4}]} >
-                <Text style={{flex:1, fontSize:15,color:'#fff',marginTop:-85,textShadowColor:'#cc3333',textShadowOffset:{width:1,height:1}}}>心率</Text>
+                <View style={[styles.floatCom,{backgroundColor:'rgba(143,3,3,1)',elevation:30}]} >
+                <Text style={{flex:1, fontSize:15,color:'#fff',justifyContent:'center',padding:8,alignItems:'center',textShadowColor:'#cc3333',textShadowOffset:{width:1,height:1}}}>心率</Text>
                     <Text style={{flex:1,fontSize:15,color:'#fff',marginTop:5,justifyContent:'center',alignItems:'center'}}>{this.state.s5}g/CM^3</Text>
                 </View>
                 <TouchableOpacity style={styles.floatBottom} onPress={()=>this.props.navigation.navigate('Vedio')}>
-                    <View style={{justifyContent:'center',alignItems:'center'}}>
-                        <Image style={{height:40,width:40,borderRadius:15,marginTop:15}} source={require('../img/视频.png')} />
+                    <View style={{justifyContent:'center',alignItems:'center',padding:10}}>
+                        <Image style={{height:25,width:25,borderRadius:15}} source={require('../img/视频.png')} />
                     </View>
                 </TouchableOpacity>
             </View>

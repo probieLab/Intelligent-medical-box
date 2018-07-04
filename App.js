@@ -6,7 +6,7 @@
 
 import React, { Component } from 'react';
 import Login from './app/login/login';
-import Main from './app/main/mian';
+import Main from './app/reset_main/mian';
 import Vedio from './app/videoCalls/videoCall';
 import Doctor from './app/doctor/doctor';
 import Detail from './app/detailMain/detailMain';

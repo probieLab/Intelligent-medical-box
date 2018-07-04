@@ -16,13 +16,23 @@ export const styles = StyleSheet.create({
         borderBottomColor:'rgba(50,50,50,1)',
         flexDirection : 'row',
     },
+    headerTitle:{
+        flex:5,
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    headerTitleWord:{
+        color:'#9f9fa0',
+        //fcfcfc
+        fontSize:15
+    },
     Personal:{
         flex:1,
         flexDirection:'row',
         alignItems:'center',
     },
     a:{
-        flex : 6
+        flex : 1
     },
     top:{
         flex:4,
@@ -56,16 +66,15 @@ export const styles = StyleSheet.create({
         left:(win.width-win.height*0.18)/2,
     },
     floatBottom:{
-        width:win.height*0.28,
-        height:win.height*0.28/2,
-        borderTopLeftRadius: win.height*0.28/2,
-        borderTopRightRadius: win.height*0.28/2,
+        width:win.height*0.20,
+        height:win.height*0.20/2,
+        borderTopLeftRadius: win.height*0.20/2,
+        borderTopRightRadius: win.height*0.20/2,
         borderWidth:4,
         borderColor: '#bb0b0b',
         position:'absolute',
         bottom:0,
-        // marginBottom:this.state.marginBottom,
-        left:(win.width-win.height*0.28)/2,
+        left:(win.width-win.height*0.20)/2,
         backgroundColor:'#222'
     }
 });

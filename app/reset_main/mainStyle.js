@@ -17,6 +17,9 @@ export const styles = StyleSheet.create({
         flex:1,
         borderBottomWidth:1,
         borderBottomColor:'#666',
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center'
     },
     bottomArea:{
         flex:8,
@@ -31,7 +34,7 @@ export const styles = StyleSheet.create({
         paddingBottom:6,
     },
     topAreaWord:{
-        color:'#747074',
+        color:'#c0c0c0',
         fontSize: 20,
     },
     heartbeatData:{
@@ -85,5 +88,23 @@ export const styles = StyleSheet.create({
     bodyDataItemDataWord:{
         color: '#2abe45', 
         fontSize: 14,
+    },
+    doctor:{
+        flex:4,
+        color:'#c0c0c0',
+        justifyContent:'center',
+        paddingLeft:12
+    },
+    vedioButton:{
+        flex:1,
+        height:30,
+        paddingLeft:2.5,
+        borderRadius:15,
+        borderWidth:1,
+        borderColor:'#fff',
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'flex-start',
+        marginRight:5
     }
 })

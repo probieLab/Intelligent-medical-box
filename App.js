@@ -10,6 +10,7 @@ import Main from './app/reset_main/mian';
 import Vedio from './app/videoCalls/videoCall';
 import Doctor from './app/doctor/doctor';
 import Detail from './app/detailMain/detailMain';
+import Market from './app/market/marketListContainer';
 import {
   View,
 } from 'react-native';
@@ -28,5 +29,6 @@ const TotalNav = StackNavigator({
   Vedio: { screen: Vedio },
   Doctor: { screen: Doctor },
   Detail: { screen: Detail },
+  Market: { screen: Market }
 })
 

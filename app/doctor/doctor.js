@@ -32,34 +32,8 @@ export default class Doctor extends Component {
     render() {
         return (
            <View style={styles.container}>
-                <View>
-                <TouchableHighlight>
-                    <Text>眼科医生</Text>
-                </TouchableHighlight>
-                </View>
-                {/* <TouchableHighlight>
-                    
-                </TouchableHighlight>
-                <TouchableHighlight>
-                    
-                </TouchableHighlight>
-                <TouchableHighlight>
-                    
-                </TouchableHighlight>
-                <TouchableHighlight>
-                    
-                </TouchableHighlight>
-                <TouchableHighlight>
-                    
-                </TouchableHighlight> */}
+                
            </View>
         );
     }
 }
-// {title:'眼科医生',data:['Devin']},
-//                 {title:'耳鼻喉科医生',data:['Jackson','james','Jillian','joel','Julie']}
-//                 // {title:'口腔科医生',data:['Tommy','John','Ham']}
-//                 // {title:'皮肤科医生',data:['Aaron','Cary']}
-//                 // {title:'心血管内科医生',data:['Gabriel','George','Paul','peiqi']}
-//                 // {title:'内分泌科医生',data:['Spike','Timothy','William','Philip','Julie']}
-//             ]}

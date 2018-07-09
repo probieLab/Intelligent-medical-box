@@ -14,7 +14,8 @@ import {
     NativeModules,
 } from 'react-native';
 import { styles, win } from './mainStyle'
-import init from 'react_native_mqtt'
+import init from 'react_native_mqtt';
+import Bottom from '../tabNavigation/tabNavigator'
 init({
     size: 10000,
     storageBackend: AsyncStorage,
@@ -29,7 +30,8 @@ UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationE
 export default class Main extends Component {
     constructor(props) {
         super(props);
-        StatusBar.setBackgroundColor('#222', true);
+        // StatusBar.setBackgroundColor('#222', true);
+        StatusBar.setHidden(true)
         this.state = {
             client: new Paho.MQTT.Client('47.101.60.213', 10010, 'Client1'),
             userName: null,
@@ -115,85 +117,22 @@ export default class Main extends Component {
                         <Text style={styles.topAreaWord} >Evaluate:Heath </Text>
                     </View>
                     <View style={[styles.heartbeat, { borderRadius: this.state.borderRadius, height: this.state.height, width: this.state.width, top: this.state.top, left: this.state.left, backgroundColor: 'rgba(219, 74, 85,.45)' }]} ></View>
-                    <View style={styles.heartbeat} >
+            
+                    <TouchableOpacity style={styles.heartbeat} onPress={()=>this.props.navigation.navigate('Market')} >
                         <Text style={{ color: '#fff', fontSize: 30 }} >{this.state.s5}</Text>
                         <Text style={{ color: '#fff', fontSize: 10, }} >bit/min</Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.midArea} >
-                    <Text>success</Text>
+                
+                    <Text style={styles.doctor} >Attending doctor:Berlin</Text>
+                    <TouchableOpacity style={styles.vedioButton} onPress={()=>this.props.navigation.navigate('Vedio')} >
+                        <Image style={{height:25,width:25}} source={require('../img/vedio.png')} />
+                        <Text style={{ color: '#fff', fontSize: 10, marginLeft:3}} >Call him</Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.bottomArea} >
-                    <View style={styles.bodyDataItem} >
-                        <View style={styles.bodyDataItemIconBox}>
-                            <Image style={{ height: 30, width: 30 }} source={require('../img/tw.png')} />
-                        </View>
-                        <View style={styles.bodyDataItemDataBox}>
-                            <View style={styles.bodyDataItemDataDirection}>
-                                <Text style={{ color: '#fff', fontSize: 18 }}>Body temperature</Text>
-                                <Text style={{ color: '#777', fontSize: 12,}}>Expectation Vaule 36°C~36.8°C</Text>
-                            </View>
-                            <View style={styles.bodyDataItemData}>
-                                <Text style={styles.bodyDataItemDataWord}>36°C</Text>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.bodyDataItem} >
-                        <View style={styles.bodyDataItemIconBox}>
-                            <Image style={{ height: 30, width: 30 }} source={require('../img/sw.png')} />
-                        </View>
-                        <View style={styles.bodyDataItemDataBox}>
-                            <View style={styles.bodyDataItemDataDirection}>
-                                <Text style={{ color: '#fff', fontSize: 18 }}>Indoor temperature</Text>
-                                <Text style={{ color: '#777', fontSize: 12 }}>Expectation Vaule 26°C~28.8°C</Text>
-                            </View>
-                            <View style={styles.bodyDataItemData}>
-                                <Text style={styles.bodyDataItemDataWord}>26°C</Text>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.bodyDataItem} >
-                        <View style={styles.bodyDataItemIconBox}>
-                            <Image style={{ height: 30, width: 30 }} source={require('../img/sww.png')} />
-                        </View>
-                        <View style={styles.bodyDataItemDataBox}>
-                            <View style={styles.bodyDataItemDataDirection}>
-                                <Text style={{ color: '#fff', fontSize: 18 }}>Outdoor temperature</Text>
-                                <Text style={{ color: '#777', fontSize: 12 }}>Expectation Vaule 25°C~30°C</Text>
-                            </View>
-                            <View style={styles.bodyDataItemData}>
-                                <Text style={styles.bodyDataItemDataWord}>26°C</Text>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.bodyDataItem} >
-                        <View style={styles.bodyDataItemIconBox}>
-                            <Image style={{ height: 30, width: 30 }} source={require('../img/qt.png')} />
-                        </View>
-                        <View style={styles.bodyDataItemDataBox}>
-                            <View style={styles.bodyDataItemDataDirection}>
-                                <Text style={{ color: '#fff', fontSize: 18 }}>Gas concentration</Text>
-                                <Text style={{ color: '#777', fontSize: 12 }}>Expectation Vaule 7~12 g/CM^3</Text>
-                            </View>
-                            <View style={styles.bodyDataItemData}>
-                                <Text style={styles.bodyDataItemDataWord}>8</Text>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.bodyDataItem} >
-                        <View style={styles.bodyDataItemIconBox}>
-                            <Image style={{ height: 30, width: 30 }} source={require('../img/xy.png')} />
-                        </View>
-                        <View style={styles.bodyDataItemDataBox}>
-                            <View style={styles.bodyDataItemDataDirection} >
-                                <Text style={{ color: '#fff', fontSize: 18 }}>Blood pressuree</Text>
-                                <Text style={{ color: '#777', fontSize: 12 }}>Expectation Vaule 80~110</Text>
-                            </View>
-                            <View style={styles.bodyDataItemData}>
-                                <Text style={styles.bodyDataItemDataWord}>90~110</Text>
-                            </View>
-                        </View>
-                    </View>
+                <Bottom/>
                 </View>
             </View>
         )
